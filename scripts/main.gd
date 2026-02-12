@@ -54,17 +54,17 @@ func _is_collectible_overlapping_player(candidate_pos: Vector2) -> bool:
 
 func _collectible_clearance(candidate_pos: Vector2) -> float:
 	var player_rect := Rect2(player_position, PLAYER_SIZE)
-	var closest_x := clamp(candidate_pos.x, player_rect.position.x, player_rect.end.x)
-	var closest_y := clamp(candidate_pos.y, player_rect.position.y, player_rect.end.y)
+	var closest_x: float = clamp(candidate_pos.x, player_rect.position.x, player_rect.end.x)
+	var closest_y: float = clamp(candidate_pos.y, player_rect.position.y, player_rect.end.y)
 	var closest_point := Vector2(closest_x, closest_y)
 	return closest_point.distance_to(candidate_pos) - COLLECTIBLE_RADIUS
 
 func _spawn_collectible() -> void:
 	var viewport_size := get_viewport_rect().size
-	var min_x := COLLECTIBLE_RADIUS
-	var min_y := COLLECTIBLE_RADIUS
-	var max_x := max(COLLECTIBLE_RADIUS, viewport_size.x - COLLECTIBLE_RADIUS)
-	var max_y := max(COLLECTIBLE_RADIUS, viewport_size.y - COLLECTIBLE_RADIUS)
+	var min_x: float = COLLECTIBLE_RADIUS
+	var min_y: float = COLLECTIBLE_RADIUS
+	var max_x: float = max(COLLECTIBLE_RADIUS, viewport_size.x - COLLECTIBLE_RADIUS)
+	var max_y: float = max(COLLECTIBLE_RADIUS, viewport_size.y - COLLECTIBLE_RADIUS)
 	var candidate := Vector2.ZERO
 	var best_candidate := Vector2(min_x, min_y)
 	var best_clearance := -INF
